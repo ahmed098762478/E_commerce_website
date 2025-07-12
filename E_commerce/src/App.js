@@ -1,24 +1,49 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    // Exemple de traitement de connexion (remplace par appel API)
+    if (email === 'admin@example.com' && password === 'admin') {
+      alert('Connexion réussie');
+    } else {
+      alert('Identifiants invalides');
+    }
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-          learning is great 
-        </a>
-      </header>
+      <div className="login-container">
+        <h2>Connexion</h2>
+        <form onSubmit={handleLogin}>
+          <div className="form-group">
+            <label>Email :</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Mot de passe :</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+
+          <button type="submit">Se connecter</button>
+        </form>
+      </div>
     </div>
   );
 }
